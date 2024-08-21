@@ -16,6 +16,73 @@
   background-color: #f0f0f0;
 }
 
+/* Users Component Styles */
+.users-container {
+  width: 100%;
+  max-width: 900px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.users-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.users-list {
+  list-style-type: none;
+}
+
+.user-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info p {
+  margin: 5px 0;
+}
+
+.user-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.update-btn, .delete-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.update-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.update-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
 /* For larger screens */
 @media (min-width: 768px) {
   .app-container {
@@ -25,8 +92,18 @@
 
 /* For small screens */
 @media (max-width: 767px) {
-  .app-container {
+  .user-card {
     flex-direction: column;
-    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .user-actions {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .update-btn, .delete-btn {
+    width: 48%;
   }
 }
