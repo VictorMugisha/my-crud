@@ -51,6 +51,10 @@
   color: #ffd700;
 }
 
+.page-content {
+  margin-top: 4rem;
+}
+
 /* App Container Styles */
 .app-container {
   padding-top: 80px; /* Space for the navbar */

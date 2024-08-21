@@ -27,7 +27,7 @@ export default function Users() {
     };
 
     return (
-        <div className="users-container">
+        <div className="users-container page-content">
             <h2 className="users-title">Users List</h2>
             <button className="add-user-btn" onClick={handleAddUser}>Add New User</button>
             <ul className="users-list">

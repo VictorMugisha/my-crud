@@ -41,7 +41,7 @@ export default function UpdateUser() {
     };
 
     return (
-        <div className="update-user-container">
+        <div className="update-user-container page-content">
             <h2 className="update-user-title">Update User</h2>
             <form className="update-user-form" onSubmit={handleSubmit}>
                 <div className="form-group">

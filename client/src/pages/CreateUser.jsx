@@ -30,7 +30,7 @@ export default function CreateUser() {
     };
 
     return (
-        <div className="create-user-container">
+        <div className="create-user-container page-content">
             <h2 className="create-user-title">Create New User</h2>
             <form className="create-user-form" onSubmit={handleSubmit}>
                 <div className="form-group">
