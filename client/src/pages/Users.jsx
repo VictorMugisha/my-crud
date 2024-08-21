@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Users() {
     const navigate = useNavigate();
@@ -41,7 +41,9 @@ export default function Users() {
                             <p><strong>Admin:</strong> {user.isAdmin ? "Yes" : "No"}</p>
                         </div>
                         <div className="user-actions">
-                            <button className="update-btn" onClick={() => handleUpdate(user.userId)}>Update</button>
+                            <Link to={`/update/${user.userId}`}>
+                                <button className="update-btn" onClick={() => handleUpdate(user.userId)}>Update</button>
+                            </Link>
                             <button className="delete-btn" onClick={() => handleDelete(user.userId)}>Delete</button>
                         </div>
                     </li>
