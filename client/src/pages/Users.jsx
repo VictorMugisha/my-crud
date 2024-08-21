@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Users() {
+  const navigate = useNavigate();
+
   // Mock data for users
-  const [users, setUsers] = useState([
+  const [users, setUsers] = React.useState([
     { userId: 1, firstName: "John", lastName: "Doe", role: "Developer", email: "john.doe@example.com", isAdmin: false },
     { userId: 2, firstName: "Jane", lastName: "Smith", role: "Designer", email: "jane.smith@example.com", isAdmin: true },
     { userId: 3, firstName: "Alice", lastName: "Johnson", role: "Project Manager", email: "alice.johnson@example.com", isAdmin: false },
@@ -18,9 +21,15 @@ export default function Users() {
     console.log(`Update user with ID: ${userId}`);
   };
 
+  // Navigate to the Create User page
+  const handleAddUser = () => {
+    navigate('/create');
+  };
+
   return (
     <div className="users-container">
       <h2 className="users-title">Users List</h2>
+      <button className="add-user-btn" onClick={handleAddUser}>Add New User</button>
       <ul className="users-list">
         {users.map(user => (
           <li key={user.userId} className="user-card">
