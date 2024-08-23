@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Users() {
@@ -25,6 +25,19 @@ export default function Users() {
     const handleAddUser = () => {
         navigate('/create');
     };
+
+    useEffect(() => {
+        async function getUsers() {
+            try {
+                const res = await fetch("http://localhost:3000/");
+                const data = await res.json()
+                console.log("Frrom users fetch dfldsfkjlsdkf", data)
+            } catch (error) {
+                console.log("ERROR FETCHING: ", error)
+            }
+        }
+        getUsers()
+    }, [])
 
     return (
         <div className="users-container page-content">
