@@ -27,6 +27,25 @@ export default function CreateUser() {
         console.log('New user data:', formData);
         // Simulate form submission and navigate back to the user list
         navigate('/');
+        async function createUser() {
+            try {
+                const res = await fetch(
+                    "http://localhost:3000/create",
+                    {
+                        method: "post",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(formData)
+                    }
+                );
+                const data = await res.json()
+                console.log("After creating user in form", data)
+            } catch (error) {
+                console.log("ERROR CREATING USER: ", error)
+            }
+        }
+        createUser()
     };
 
     return (
