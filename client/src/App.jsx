@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import './App.css';
+import "./App.css";
 import Users from "./pages/Users";
 import CreateUser from "./pages/CreateUser";
 import UpdateUser from "./pages/UpdateUser";
@@ -14,7 +14,9 @@ export default function App() {
             <li>
               <NavLink
                 to="/"
-                className={({ isActive }) => isActive ? 'active-link' : 'link'}
+                className={({ isActive }) =>
+                  isActive ? "active-link" : "link"
+                }
               >
                 Users
               </NavLink>
@@ -22,7 +24,9 @@ export default function App() {
             <li>
               <NavLink
                 to="/create"
-                className={({ isActive }) => isActive ? 'active-link' : 'link'}
+                className={({ isActive }) =>
+                  isActive ? "active-link" : "link"
+                }
               >
                 Create User
               </NavLink>
