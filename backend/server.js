@@ -1,12 +1,15 @@
 const express = require("express")
 const cors = require("cors")
+const dotenv = require("dotenv")
 
 const UserModel = require("./models/User.js")
 const { default: mongoose } = require("mongoose")
 
 const app = express()
 
-const MONGODB_CONNECTION = "mongodb+srv://victormugisha:victormugisha123@nodenetninja.hd6g2.mongodb.net/?retryWrites=true&w=majority&appName=NodeNetNinja"
+dotenv.config()
+
+const MONGODB_CONNECTION = process.env.MONGO_URI
 const PORT = process.env.PORT || 3000
 
 app.use(cors())
