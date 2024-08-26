@@ -25,7 +25,7 @@ export default function Users() {
     useEffect(() => {
         async function getUsers() {
             try {
-                const res = await fetch("http://localhost:3000/");
+                const res = await fetch("http://localhost:5000/");
                 const data = await res.json()
                 setUsers(data)
             } catch (error) {

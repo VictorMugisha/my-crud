@@ -26,11 +26,10 @@ export default function CreateUser() {
         e.preventDefault();
         console.log('New user data:', formData);
         // Simulate form submission and navigate back to the user list
-        navigate('/');
         async function createUser() {
             try {
                 const res = await fetch(
-                    "http://localhost:3000/create",
+                    "http://localhost:5000/create",
                     {
                         method: "post",
                         headers: {
@@ -45,7 +44,8 @@ export default function CreateUser() {
                 console.log("ERROR CREATING USER: ", error)
             }
         }
-        createUser()
+        createUser();
+        navigate('/');
     };
 
     return (
