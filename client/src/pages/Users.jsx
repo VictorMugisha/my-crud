@@ -39,36 +39,6 @@ export default function Users() {
         <div className="users-container page-content">
             <h2 className="users-title">Users List</h2>
             <button className="add-user-btn" onClick={handleAddUser}>Add New User</button>
-
-
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Role</th>
-                    <th>Email</th>
-                    <th>Admin</th>
-                    <th>Actions</th>
-                </tr>
-                {users.map(user => (
-                    <tr key={user._id}>
-                        <td>{user._id}</td>
-                        <td>{user.firstName} {user.lastName}</td>
-                        <td>{user.role}</td>
-                        <td>{user.email}</td>
-                        <td>{user.isAdmin ? "Yes" : "No"}</td>
-                        <td>
-                            <div className="user-actions">
-                                <Link to={`/update/${user._id}`}>
-                                    <button className="update-btn" onClick={() => handleUpdate(user._id)}>Update</button>
-                                </Link>
-                                <button className="delete-btn" onClick={() => handleDelete(user._id)}>Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                ))}
-            </table>
-
             <ul className="users-list">
                 {users.map(user => (
                     <li key={user._id} className="user-card">
