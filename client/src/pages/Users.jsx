@@ -6,13 +6,16 @@ export default function Users() {
     const [users, setUsers] = React.useState([]);
 
     // Function to handle deletion of a user
-    const handleDelete = (_id) => {
-        setUsers(users.filter(user => user._id !== _id));
-    };
-
-    // Function to handle update (can be linked to routing in a real app)
-    const handleUpdate = (_id) => {
-        console.log(`Update user with ID: ${_id}`);
+    const handleDelete = async (_id) => {
+        console.log("Deleting a user: ", _id);
+        try {
+            const res = await fetch(`http://localhost:5000/${_id}`, { method: 'DELETE' });
+            const data = await res.json();
+            console.log("Deleted a user: ", data);
+            setUsers(users.filter(user => user._id !== _id));
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     // Navigate to the Create User page
@@ -49,7 +52,7 @@ export default function Users() {
                         </div>
                         <div className="user-actions">
                             <Link to={`/update/${user._id}`}>
-                                <button className="update-btn" onClick={() => handleUpdate(user._id)}>Update</button>
+                                <button className="update-btn">Update</button>
                             </Link>
                             <button className="delete-btn" onClick={() => handleDelete(user._id)}>Delete</button>
                         </div>

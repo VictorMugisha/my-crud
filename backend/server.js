@@ -72,16 +72,16 @@ app.put("/:id", async (req, res) => {
 });
 
 // Deleting a user
-app.delete("delete/:id", async (req, res) => {
-    const {id} = req.params;
+app.delete("/:id", async (req, res) => {
+    const { id } = req.params;
     try {
         const user = await UserModel.findById(id);
         if (!user) {
-            res.status(404).send("User not found");
+            return res.status(404).send("User not found");
         }
         await user.remove();
         res.status(200).send("User deleted successfully");
     } catch (error) {
-        res.status(501).send(error)
+        res.status(500).send({ message: "Failed to delete user", error });
     }
-})
+});
