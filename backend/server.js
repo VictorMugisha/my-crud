@@ -34,6 +34,17 @@ app.get("/", async (req, res) => {
     }
 })
 
+// Getting a single user
+app.get("/:id", async (req, res) => {
+    const { id } = req.params
+    try {
+        const user = await UserModel.findById(id)
+        res.status(201).json(user)
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+})
+
 app.post("/create", async (req, res) => {
     const body = req.body;
     try {

@@ -18,8 +18,18 @@ export default function UpdateUser() {
 
     // Simulate fetching user data on component mount
     useEffect(() => {
-        // Fetch user data based on ID and set it to formData
-        // Example: fetchUserById(id).then(user => setFormData(user));
+        // Fetching user from the backend using "http://localhost:5000/users/:id" endpoint
+        async function fetchUser() {
+            try {
+                const user = await fetch(`http://localhost:5000/${id}`);
+                const data = await user.json();
+                setFormData(data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchUser();
     }, [id]);
 
     // Handle input changes
