@@ -63,7 +63,6 @@ app.post("/create", async (req, res) => {
 app.put("/:id", async (req, res) => {
     const { id } = req.params;
     const body = req.body;
-    console.log(bosy)
     try {
         const user = await UserModel.findByIdAndUpdate(id, body);
         res.status(200).json(user)
