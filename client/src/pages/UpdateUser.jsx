@@ -7,18 +7,16 @@ export default function UpdateUser() {
 
     // Mock initial user data - replace this with actual data fetching logic
     const initialUserData = {
-        firstName: 'John',
-        lastName: 'Doe',
-        role: 'Developer',
-        email: 'johndoe@example.com',
-        isAdmin: true,
+        firstName: '',
+        lastName: '',
+        role: '',
+        email: '',
+        isAdmin: null,
     };
 
     const [formData, setFormData] = useState(initialUserData);
 
-    // Simulate fetching user data on component mount
     useEffect(() => {
-        // Fetching user from the backend using "http://localhost:5000/users/:id" endpoint
         async function fetchUser() {
             try {
                 const user = await fetch(`http://localhost:5000/${id}`);
