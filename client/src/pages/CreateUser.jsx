@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 
 export default function CreateUser() {
     const [formData, setFormData] = useState({
@@ -24,12 +25,12 @@ export default function CreateUser() {
     // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('New user data:', formData);
         // Simulate form submission and navigate back to the user list
         async function createUser() {
             try {
+                const api = API_URL + "/create";
                 const res = await fetch(
-                    "http://localhost:5000/create",
+                    api,
                     {
                         method: "post",
                         headers: {

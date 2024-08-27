@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from "../../config.js";
 
 export default function Users() {
   const navigate = useNavigate();
@@ -9,7 +10,8 @@ export default function Users() {
   const handleDelete = async (_id) => {
     console.log("Deleting a user: ", _id);
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${_id}`, {
+      const api = API_URL + "/" + _id;
+      const res = await fetch(api, {
         method: "DELETE",
       });
       if (res.status === 404) {
@@ -33,13 +35,13 @@ export default function Users() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/users");
+        const res = await fetch(API_URL);
         const data = await res.json();
         // Ensure data is an array before setting the state
         if (Array.isArray(data)) {
           setUsers(data);
         } else {
-          console.log(data)
+          console.log(data);
           console.error("Fetched data is not an array", data);
           setUsers([]);
         }

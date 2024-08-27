@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { API_URL } from "../../config.js";
 
 export default function UpdateUser() {
   const { id } = useParams();
@@ -21,7 +22,8 @@ export default function UpdateUser() {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await fetch(`http://localhost:5000/${id}`);
+        const api = API_URL + "/" + id;
+        const response = await fetch(api);
         const data = await response.json();
         // Ensure all fields are handled correctly
         setFormData({
@@ -32,12 +34,12 @@ export default function UpdateUser() {
           isAdmin: data.isAdmin !== undefined ? data.isAdmin : false, // Default to false if undefined
         });
       } catch (error) {
-        console.log(error);
+        console.log(error, updateStatus);
       }
     }
 
     fetchUser();
-  }, [id]);
+  }, [id, updateStatus]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -54,7 +56,8 @@ export default function UpdateUser() {
     console.log("Updated user data:", formData);
 
     try {
-      const response = await fetch(`http://localhost:5000/${id}`, {
+      const api = API_URL + "/" + id;
+      const response = await fetch(api, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
