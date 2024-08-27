@@ -9,7 +9,7 @@ export default function Users() {
   const handleDelete = async (_id) => {
     console.log("Deleting a user: ", _id);
     try {
-      const res = await fetch(`http://localhost:5000/${_id}`, {
+      const res = await fetch(`http://localhost:5000/api/users/${_id}`, {
         method: "DELETE",
       });
       if (res.status === 404) {
@@ -29,16 +29,25 @@ export default function Users() {
     navigate("/create");
   };
 
+  // Fetch users
   useEffect(() => {
-    async function getUsers() {
+    const getUsers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/");
+        const res = await fetch("http://localhost:5000/api/users");
         const data = await res.json();
-        setUsers(data);
+        // Ensure data is an array before setting the state
+        if (Array.isArray(data)) {
+          setUsers(data);
+        } else {
+          console.log(data)
+          console.error("Fetched data is not an array", data);
+          setUsers([]);
+        }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
-    }
+    };
+
     getUsers();
   }, []);
 
@@ -49,7 +58,7 @@ export default function Users() {
         Add New User
       </button>
       <ul className="users-list">
-        {users.map((user) => (
+        {users?.map((user) => (
           <li key={user._id} className="user-card">
             <div className="user-info">
               <p>
