@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Users() {
     const navigate = useNavigate();
-    const location = useLocation();
-    console.log("From home route: ", location.state)
-
-    // Mock data for users
     const [users, setUsers] = React.useState([]);
 
     // Function to handle deletion of a user
