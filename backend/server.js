@@ -27,6 +27,3 @@ mongoose
   .catch((error) => console.log(error));
 
 app.use("/api/users", userRoutes);
-
-
-// Now the api to get all users will be http://localhost:5000/api/users
