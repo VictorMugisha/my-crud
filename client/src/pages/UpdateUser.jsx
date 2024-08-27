@@ -40,11 +40,24 @@ export default function UpdateUser() {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Updated user data:', formData);
-        // Simulate updating user data and navigate back to the user list
-        // Example: updateUser(id, formData).then(() => navigate('/'));
+        
+        try {
+            const user = await fetch(`http://localhost:5000/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await user.json();
+            console.log('After updating user in form', data);
+        } catch (error) {
+            console.log(error);
+        }
+
         navigate('/');
     };
 

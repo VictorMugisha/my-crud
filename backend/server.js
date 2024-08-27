@@ -12,8 +12,8 @@ dotenv.config()
 const MONGODB_CONNECTION = process.env.MONGO_URI;
 const PORT = process.env.PORT || 3000;
 
-app.use(cors())
-app.use(express.urlencoded({ extended: true }))
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 mongoose.connect(MONGODB_CONNECTION)
@@ -21,10 +21,12 @@ mongoose.connect(MONGODB_CONNECTION)
         console.log("Database connected....")
         app.listen(PORT, () => {
             console.log("Server is running on port ", PORT)
-        })
+        });
     })
-    .catch((error) => console.log(error))
+    .catch((error) => console.log(error));
 
+
+// Getting all users
 app.get("/", async (req, res) => {
     try {
         const users = await UserModel.find()
@@ -32,7 +34,7 @@ app.get("/", async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-})
+});
 
 // Getting a single user
 app.get("/:id", async (req, res) => {
@@ -43,8 +45,9 @@ app.get("/:id", async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-})
+});
 
+// Creating a new user
 app.post("/create", async (req, res) => {
     const body = req.body;
     try {
@@ -54,5 +57,17 @@ app.post("/create", async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-})
+});
 
+// Updating a user
+app.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const body = req.body;
+    console.log(bosy)
+    try {
+        const user = await UserModel.findByIdAndUpdate(id, body);
+        res.status(200).json(user)
+    } catch(error) {
+        res.status(400).json({ error, message: "Failed to find and update a user" });
+    }
+});
